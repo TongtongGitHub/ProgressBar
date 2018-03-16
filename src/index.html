@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="0">
+    <title>svg animation</title>
+    <script type="text/javascript" src="tween.js"></script>
+    <script type="text/javascript" src="progressBar.js"></script>
+    <style type="text/css">
+        .progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #29d;
+            box-shadow: 0 0 3px #29d;
+        }
+
+        .text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            color: #000;
+            border: none;
+            width: 100px;
+            height: 100px;
+            margin-top: -50px;
+            margin-left: -50px;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        .round-progress {
+            fill: none;
+            stroke: #29d;
+            stroke-width: 5;
+            stroke-dasharray: 1000;
+        }
+
+        .svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            margin-top: -50px;
+            margin-left: -50px;
+            transform: rotate(-90deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="progress"></div>
+    <div class="text">0%</div>
+    <div class="svg">
+        <svg height="100%" width="100%">
+            <circle class="round-progress" cx="50" cy="50" r="45" />
+        </svg>
+    </div>
+
+    <script type="text/javascript">
+        let topProgress = new progressBar({
+            type: "top", //top, circle
+            targetClass: "progress",
+            value: 100, //final value
+            duration: 2000, //ms
+            completeDuration: 500 //ms
+        });
+        setTimeout(() => {
+            topProgress.complete();
+        }, 2000);
+
+        let circleProgress = new progressBar({
+            type: "circle", //top, circle
+            targetClass: "round-progress",
+            textClass: "text",
+            value: 100, //final value
+            duration: 2000, //ms
+            completeDuration: 500 //ms
+        });
+        setTimeout(() => {
+            circleProgress.complete();
+        }, 2000);
+    </script>
+</body>
+
+</html>
